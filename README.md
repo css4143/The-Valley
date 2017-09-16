@@ -1,6 +1,6 @@
 # The Valley
 
-A simulatior of life after graduating and moving to Silicon Valley.
+A simulator of life after graduating and moving to Silicon Valley.
 
 ## ENJOY LIFE!
 - Struggle to pay off your student loans!
