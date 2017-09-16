@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Views.GameMainView">
+  <grid id="27dc6" binding="titlePageView" layout-manager="GridBagLayout">
+    <constraints>
+      <xy x="20" y="20" width="838" height="727"/>
+    </constraints>
+    <properties>
+      <autoscrolls value="true"/>
+      <background color="-11711155"/>
+      <focusCycleRoot value="true"/>
+      <preferredSize width="1000" height="800"/>
+      <verifyInputWhenFocusTarget value="false"/>
+    </properties>
+    <border type="none">
+      <font/>
+    </border>
+    <children>
+      <hspacer id="81b4f">
+        <constraints>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="1" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="120" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </hspacer>
+      <vspacer id="9a4a6">
+        <constraints>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="2" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </vspacer>
+      <component id="ede1d" class="javax.swing.JButton" binding="startButton">
+        <constraints>
+          <grid row="5" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <background color="-14870179"/>
+          <borderPainted value="false"/>
+          <contentAreaFilled value="true"/>
+          <defaultCapable value="false"/>
+          <enabled value="false"/>
+          <focusPainted value="false"/>
+          <focusable value="true"/>
+          <font name="Helvetica" size="20"/>
+          <foreground color="-1"/>
+          <maximumSize width="200" height="50"/>
+          <minimumSize width="200" height="50"/>
+          <preferredSize width="200" height="50"/>
+          <rolloverEnabled value="true"/>
+          <text value="START"/>
+        </properties>
+      </component>
+      <component id="e0013" class="javax.swing.JLabel" binding="gameTitle">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <doubleBuffered value="true"/>
+          <enabled value="true"/>
+          <focusable value="false"/>
+          <font name="Helvetica" size="48"/>
+          <horizontalAlignment value="0"/>
+          <maximumSize width="300" height="40"/>
+          <minimumSize width="300" height="40"/>
+          <preferredSize width="300" height="40"/>
+          <requestFocusEnabled value="false"/>
+          <text value="The Valley"/>
+          <verifyInputWhenFocusTarget value="false"/>
+        </properties>
+      </component>
+      <vspacer id="97702">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag top="30" left="0" bottom="0" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </vspacer>
+      <vspacer id="e2fdf">
+        <constraints>
+          <grid row="6" column="1" row-span="1" col-span="2" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+          <gridbag top="0" left="0" bottom="30" right="0" weightx="0.0" weighty="0.0"/>
+        </constraints>
+      </vspacer>
+      <component id="c1c52" class="javax.swing.JTextArea" binding="subTitle">
+        <constraints>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="50"/>
+          </grid>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties>
+          <background color="-11711155"/>
+          <editable value="false"/>
+          <focusable value="false"/>
+          <font name="Times New Roman" size="24" style="2"/>
+          <lineWrap value="true"/>
+          <margin top="100" left="20" bottom="0" right="20"/>
+          <maximumSize width="400" height="200"/>
+          <minimumSize width="400" height="200"/>
+          <preferredSize width="400" height="300"/>
+          <requestFocusEnabled value="false"/>
+          <rows value="0"/>
+          <text value="Built by those who innovated in garages; Sustained by those unable to afford garages"/>
+          <verifyInputWhenFocusTarget value="false"/>
+          <wrapStyleWord value="true"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>
