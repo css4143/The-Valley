@@ -83,6 +83,8 @@ public class EventBuilder {
 		events.add(healthDeath);
 		events.add(moneyDeath);
 		events.add(satisfactionDeath);
+		events.add(firing);
+		
 		return events;
 	}
 	
