@@ -19,38 +19,16 @@ public class EventBuilder {
 	public static List<StartEvent> buildRandomEvents(){
 		List<StartEvent> randomEvents = new ArrayList<StartEvent>();
 		
-		List<Option> confirm = new ArrayList<Option>();
-		Option cont = new Option(null, "OK", 0, 0, 0, 0, null);
-		confirm.add(cont);
-		//
-		// FINISH PUTTING THIS STUFF IN
-		//
-		StartEvent teslas3 = new StartEvent("You see two Teslas pull up to a charging station at the same time.  They drivers get out and argue with each other before fighting.  One of them looks like a little bitch and is getting his ass kicked.  What do you do?",
-				confirm, null, null);
+		randomEvents.add(teslaEvent());
 		
-		List<Option> choices2 = new ArrayList<Option>();
-		choices2.add(new Option(null, "Watch what happens.", 0, 0, 0, 0, teslas3));
-		choices2.add(new Option(null, "Help the guy beating up Elon.", 0, 0, 10, 0, null));
-		choices2.add(new Option(null, "I MUST SAVE ELON MUSK!", -15, 0, 0, 0, null));
-		
-		StartEvent teslas2 = new StartEvent("Upon closer inspection, the guy getting his ass kicked is Elon Musk.  What do you do?",
-				choices2, null, null);
-		
-		List<Option> choices1 = new ArrayList<Option>();
-		choices1.add(new Option(null, "Check it out", 0, 0, 0, 0, teslas2));
-		choices1.add(new Option(null, "Fuck it, you've got places to be", 0, 0, 10, 0, null));
-		
-		StartEvent teslas1 = new StartEvent("You see two Teslas pull up to a charging station at the same time.  They drivers get out and argue with each other before fighting.  One of them looks like a little bitch and is getting his ass kicked.  What do you do?",
-				choices1, null, null);
-		
-		
-		randomEvents.add(teslas1);
 		return randomEvents;
 	}
 	
 	public static List<StartEvent> buildTriggeredEvents(){
 		List<StartEvent> events = new ArrayList<StartEvent>();
 		
+		//The following are the fail states, when any of your stats reach 1 or lower.
+		//Put other triggered events in another method before calling it from here.
 		List<Option> confirm = new ArrayList<Option>();
 		Option cont = new Option(null, "OK", 0, 0, 0, 0, null);
 		confirm.add(cont);
@@ -149,5 +127,37 @@ public class EventBuilder {
 		t.setOptions(options);
 		t.setPrerequisite(new Requirement(0, 0, 0, 0, null));
 		return t;
+	}
+	
+	private static StartEvent teslaEvent(){
+		SubEvent teslas5 = new SubEvent("You save Elon Musk but get punched in the process.  "
+				+ "He grumbles a thanks at you before crying and getting back in his Tesla.  "
+				+ "You don't feel very satisfied. (health -15, satisfaction +2)", null);
+		
+		SubEvent teslas4 = new SubEvent("You gleefully join the man in beating up the stuck-up billionaire."
+				+ "Disappointed in humanity, Elon Musk decides to no longer be the only one standing in the way"
+				+ " of the world being ruled by smart AI.  The world becomes Terminator, everyone is dead. (health -100)", null);
+		
+		SubEvent teslas3 = new SubEvent("The fight ends when Elon starts crying and craps"
+				+ " his pants.  Realizing that even a titan of the industry is no different than "
+				+ "the rest of the awkward nerds in this valley fills you with a sense of satisfaction "
+				+ "(satisfaction +15)", null);
+		
+		List<Option> choices2 = new ArrayList<Option>();
+		choices2.add(new Option(null, "Watch what happens.", 0, 0, 15, 0, teslas3));
+		choices2.add(new Option(null, "Help the guy beating up Elon.", -100, 0, 0, 0, teslas4));
+		choices2.add(new Option(null, "I MUST SAVE ELON MUSK!", -15, 0, 2, 0, teslas5));
+		
+		SubEvent teslas2 = new SubEvent("Upon closer inspection, the guy getting his ass"
+				+ " kicked is Elon Musk.  What do you do?", choices2);
+		
+		List<Option> choices1 = new ArrayList<Option>();
+		choices1.add(new Option(null, "Check it out", 0, 0, 0, 0, teslas2));
+		choices1.add(new Option(null, "Fuck it, you've got places to be", 0, 0, 10, 0, null));
+		
+		StartEvent teslas1 = new StartEvent("You see two Teslas pull up to a charging station at the same time.  They drivers get out and argue with each other before fighting.  One of them looks like a little bitch and is getting his ass kicked.  What do you do?",
+				choices1, null, null);
+		
+		return teslas1;
 	}
 }

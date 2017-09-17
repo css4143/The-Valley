@@ -1,5 +1,6 @@
 package game.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SubEvent {
@@ -23,7 +24,13 @@ public class SubEvent {
 		this.description = description;
 	}
 	public List<Option> getOptions() {
-		return options;
+		if(options != null && options.size() > 0){
+			return options;
+		}
+		
+		List<Option> defaultOption = new ArrayList<Option>();
+		defaultOption.add(new Option(null, "OK", 0, 0, 0, 0, null));
+		return defaultOption;
 	}
 	public void setOptions(List<Option> options) {
 		this.options = options;
