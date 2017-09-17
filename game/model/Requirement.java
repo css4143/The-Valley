@@ -30,6 +30,9 @@ public class Requirement {
 	//A list of String arrays (all size 2) that represent previous choices
 	//that can be referenced in the player choices dictionary.
 	private List<String[]> choiceReq;
+
+	//daysReq is 0 for doesn't matter, 1 for odd days, and 2 for even days
+	private int daysReq;
 	
 	public Requirement(){
 		this.healthReq = 0;
@@ -37,15 +40,17 @@ public class Requirement {
 		this.satisfactionReq = 0;
 		this.jobReq = 0;
 		this.choiceReq = new ArrayList<String[]>();
+		this.daysReq = 2;
 	}
 	
 	public Requirement(int healthReq, int moneyReq, int satisfactionReq,
-			int jobReq, List<String[]> choiceReq) {
+			int jobReq, List<String[]> choiceReq, int daysReq) {
 		this.healthReq = healthReq;
 		this.moneyReq = moneyReq;
 		this.satisfactionReq = satisfactionReq;
 		this.jobReq = jobReq;
 		this.choiceReq = choiceReq;
+		this.daysReq = daysReq;
 	}
 	
 	public int getJobReq() {
@@ -78,6 +83,9 @@ public class Requirement {
 	public void setChoiceReq(List<String[]> choiceReq) {
 		this.choiceReq = choiceReq;
 	}
+
+	public int getDaysReq() { return daysReq; }
+	public void setDaysReq(int daysReq) { this.daysReq = daysReq; }
 	
 	//Returns true if requirement is met, false otherwise.
 	public boolean check(Player player){

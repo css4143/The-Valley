@@ -15,6 +15,7 @@ public class Player {
 	private Map<String, String> choices;
 	private List<String> skills;
 	private boolean job;
+	private int daysAtJob;
 	
 	public Player(){ }
 	
@@ -27,6 +28,7 @@ public class Player {
 		this.choices = new HashMap<String, String>();
 		this.skills = new ArrayList<String>();
 		this.job = job;
+		this.daysAtJob = 0;
 	}
 	
 	public String getChoice(String key) {
@@ -79,4 +81,6 @@ public class Player {
 	public void setHealth(int health) {
 		this.health = health;
 	}
+	public int getDaysAtJob() { return daysAtJob; }
+	public void surviveDayAtJob() { this.daysAtJob++; }
 }

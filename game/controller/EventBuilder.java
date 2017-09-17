@@ -36,20 +36,49 @@ public class EventBuilder {
 		
 		StartEvent healthDeath = new StartEvent("You forgot to drink your apple cider "
 				+ "vinegar and your health was too poor to fight off the toxins."
-				+ "  You're Dead.  Game Over.", confirm, new Requirement(-1, 0, 0, 0, null), null);
+				+ "  You're Dead.  Game Over.", confirm, new Requirement(-1, 0, 0, 0, null, 0), null);
 		
 		StartEvent moneyDeath = new StartEvent("No longer able to afford an apartment, "
 				+ "you moved back in with your parents on the East Coast.  You got a job in the "
 				+ "adjacent city. Without having to pay rent, you pay off your "
 				+ "student loans with ease and live a pleasant life.  You Lose?", 
-				confirm, new Requirement(0, -1, 0, 0, null), null);
+				confirm, new Requirement(0, -1, 0, 0, null, 0), null);
 		
 		StartEvent satisfactionDeath = new StartEvent("You find no satisfaction in your life."
 				+ "You realize that everything is meaningless and life has no point.  After "
 				+ "coming out of your existentialist depression, you decide to wander the world."
 				+ "  You're shot to death in Tibet 3 years later with no regrets. Game Over.", 
-				confirm, new Requirement(0, 0, -1, 0, null), null);
-		
+				confirm, new Requirement(0, 0, -1, 0, null, 0), null);
+
+
+
+
+
+        SubEvent  plead = new SubEvent("The boss looks at you blankly, but with a small hint of pity." +
+                " It seems your excessive pleading has made you look extremely pathetic. The boss says" +
+                " 'I think it would be best if you leave now.' \n" +
+                "You feel very embarrassed and feel like you're going to puke. (You are now unemployed. Satisfaction -20, Health -5)", null);
+
+
+        SubEvent nodSilently = new SubEvent("The boss looks uncomfortable with your silence." +
+                " He says 'This company needs its workers to be passionate about their job...'" +
+                " He looks at you, seeming even more uncomfortable with your silence." +
+                " 'I wish you the best in your future,' he says with an obviously fake smile as he tries to reach out for a handshake." +
+                " You tried to go for a fist bump instead. Your - no - the boss looks even more uncomfortable, if that was even possible" +
+                " He silently pulls out his phone as you turn around and walk out the door. \n" +
+                "You feel ice cold inside, which in Silicon Valley means 'somewhere below 60 degrees F'." +
+                " You don't feel like eating for the rest of the day. (You are now unemployed. Satisfaction -20, Health -5, Money +1)", null);
+
+        List<Option> choices1 = new ArrayList<Option>();
+
+        choices1.add( new Option( null, "Plead to keep your job", -5, 0, -20, 1, plead));
+        choices1.add( new Option( null, "Numbly nod head in silence", -5, +1, -20, 1, nodSilently ));
+
+
+		StartEvent firing = new StartEvent("Your boss calls you into his office. 'We don't really feel like you've been acting like a team player."
+                + " It would be best if you and our company did a conscious uncoupling.' \n "
+                + " You're getting fired. What do you do?", choices1, new Requirement(-1, 0, -1, 2, null, 0),
+                    new Requirement(-40, 0, -40, 0, null, 0) );
 		
 		events.add(healthDeath);
 		events.add(moneyDeath);
@@ -125,7 +154,7 @@ public class EventBuilder {
 		options.add(new Option(null, "Buy a taco", 0, 1, 0, 0, t1));
 		
 		t.setOptions(options);
-		t.setPrerequisite(new Requirement(0, 0, 0, 0, null));
+		t.setPrerequisite(new Requirement(0, 0, 0, 0, null, 0));
 		return t;
 	}
 	
@@ -160,4 +189,5 @@ public class EventBuilder {
 		
 		return teslas1;
 	}
+
 }
