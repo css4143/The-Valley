@@ -20,6 +20,7 @@ public class EventBuilder {
 		List<StartEvent> randomEvents = new ArrayList<StartEvent>();
 		
 		randomEvents.add(teslaEvent());
+		randomEvents.add(getDrinksEvent());
 		
 		return randomEvents;
 	}
@@ -51,40 +52,11 @@ public class EventBuilder {
 				confirm, new Requirement(0, 0, -1, 0, null, 0), null);
 
 
-
-
-
-        SubEvent  plead = new SubEvent("The boss looks at you blankly, but with a small hint of pity." +
-                " It seems your excessive pleading has made you look extremely pathetic. The boss says" +
-                " 'I think it would be best if you leave now.' \n" +
-                "You feel very embarrassed and feel like you're going to puke. (You are now unemployed. Satisfaction -20, Health -5)", null);
-
-
-        SubEvent nodSilently = new SubEvent("The boss looks uncomfortable with your silence." +
-                " He says 'This company needs its workers to be passionate about their job...'" +
-                " He looks at you, seeming even more uncomfortable with your silence." +
-                " 'I wish you the best in your future,' he says with an obviously fake smile as he tries to reach out for a handshake." +
-                " You tried to go for a fist bump instead. Your - no - the boss looks even more uncomfortable, if that was even possible" +
-                " He silently pulls out his phone as you turn around and walk out the door. \n" +
-                "You feel ice cold inside, which in Silicon Valley means 'somewhere below 60 degrees F'." +
-                " You don't feel like eating for the rest of the day. (You are now unemployed. Satisfaction -20, Health -5, Money +1)", null);
-
-        List<Option> choices1 = new ArrayList<Option>();
-
-        choices1.add( new Option( null, "Plead to keep your job", -5, 0, -20, 1, plead));
-        choices1.add( new Option( null, "Numbly nod head in silence", -5, +1, -20, 1, nodSilently ));
-
-
-		StartEvent firing = new StartEvent("Your boss calls you into his office. 'We don't really feel like you've been acting like a team player."
-                + " It would be best if you and our company did a conscious uncoupling.' \n "
-                + " You're getting fired. What do you do?", choices1, new Requirement(-1, 0, -1, 2, null, 0),
-                    new Requirement(-40, 0, -40, 0, null, 0) );
-		
 		events.add(healthDeath);
 		events.add(moneyDeath);
 		events.add(satisfactionDeath);
-		events.add(firing);
-		
+		events.add(fireEvent());
+
 		return events;
 	}
 	
@@ -192,4 +164,81 @@ public class EventBuilder {
 		return teslas1;
 	}
 
+	private static StartEvent fireEvent() {
+        SubEvent  plead = new SubEvent("The boss looks at you blankly, but with a small hint of pity." +
+                " It seems your excessive pleading has made you look extremely pathetic. The boss says" +
+                " 'I think it would be best if you leave now.' \n" +
+                "You feel very embarrassed and feel like you're going to puke. (You are now unemployed. Satisfaction -20, Health -5)", null);
+
+
+        SubEvent nodSilently = new SubEvent("The boss looks uncomfortable with your silence." +
+                " He says 'This company needs its workers to be passionate about their job...'" +
+                " He looks at you, seeming even more uncomfortable with your silence." +
+                " 'I wish you the best in your future,' he says with an obviously fake smile as he tries to reach out for a handshake." +
+                " You tried to go for a fist bump instead. Your - no - the boss looks even more uncomfortable, if that was even possible" +
+                " He silently pulls out his phone as you turn around and walk out the door. \n" +
+                "You feel ice cold inside, which in Silicon Valley means 'somewhere below 60 degrees F'." +
+                " You don't feel like eating for the rest of the day. (You are now unemployed. Satisfaction -20, Health -5, Money +1)", null);
+
+        List<Option> choices1 = new ArrayList<Option>();
+
+        choices1.add( new Option( null, "Plead to keep your job", -5, 0, -20, 1, plead));
+        choices1.add( new Option( null, "Numbly nod head in silence", -5, +1, -20, 1, nodSilently ));
+
+
+        StartEvent firing = new StartEvent("Your boss calls you into his office. 'We don't really feel like you've been acting like a team player."
+                + " It would be best if you and our company did a conscious uncoupling.' \n "
+                + " You're getting fired. What do you do?", choices1, new Requirement(-1, 0, -1, 2, null, 0),
+                new Requirement(-40, 0, -40, 0, null, 0) );
+
+        return firing;
+    }
+
+    private static StartEvent getDrinksEvent() {
+	    //Random
+
+        SubEvent wine = new SubEvent("You want to show your team that you have good taste, so you order a glass of wine." +
+                " No one on the team comments on your drink choice. You all discuss about how functional programming is the future. \n (Health -2, Money -4)", null);
+
+        SubEvent mixedDrink = new SubEvent("You want to show your team that you are a risk-taker so you excitedly order 'The Innovator'." +
+                " One team member snarks 'It\'s probably not that special.' When you receive your drink, you take a sip." +
+                "It tastes exactly like a rum and Coke, but uses Vanilla Coke instead of regular. You feel disappointed by 'The Innovator'.\n" +
+                "(Health - 2, Money -4, Satisfaction -1)", null);
+
+        SubEvent IPA = new SubEvent("You want to show your team that you are down-to-earth by ordering the locally-brewed, organic IPA." +
+                " All your teammates acknowledge your awesome, original choice and order the same thing." +
+                " You all discuss how great it feels to support the local community." +
+                " You tune out the conversation and feel proud of yourself for your drink choice.\n" +
+                "(Health -2, Money -5, Satisfaction +5) ", null);
+
+        SubEvent cheapBeer = new SubEvent(" You want to show your team that you are resourceful so you order the cheap, generic beer." +
+                " Your teammates look at you as if you had just said 'My favorite language is PHP,' unironically.\n" +
+                "(Health -2, Money -2, Satisfaction -3)", null);
+
+        List<Option> drinkChoice = new ArrayList<Option>();
+
+        //Add Choice Options
+        drinkChoice.add( new Option(null, "Order a glass of red wine", -2, -4, 0, 0, wine) );
+
+        drinkChoice.add( new Option(null, "Order a mixed drink called 'The Innovator'", -2, -4, -1, 0, mixedDrink) );
+
+        drinkChoice.add( new Option(null, "Order a locally-brewed, organic IPA", -2, -5, +5, 0, IPA) );
+
+        drinkChoice.add( new Option(null, "Order the cheapest generic beer on the menu", -2, -2, -3, 0, cheapBeer) );
+
+        StartEvent getDrinks = new StartEvent("The team decides to go to a new bar in town, Clippy," +
+                " You arrange for a ParCar to pick you up. One team member proudly proclaims that he would have" +
+                " preferred to use Boost because they treat their workers better." +
+                " The other teammates nod in agreement and you join in as well. While nodding, you think to yourself, " +
+                " 'Well... I already had ParCar installed; installing the Boost app would be too annoying." +
+                " I only need one ride-sharing app.' When you finish your thought, you noticed that you are still nodding" +
+                " your head and your teammates are getting into your ParCar that has just arrived." +
+                " You stare out the window as the rest of your team chirps to the world about how awesome Clippy will be." +
+                " You all arrive to Clippy, and take a seat at the bar. The bartender asks you what you would like to drink. \n" +
+                "What drink do you order?", drinkChoice, new Requirement(0, 0, 0, 2, null, 0), null);
+
+        return  getDrinks;
+
+
+    }
 }
