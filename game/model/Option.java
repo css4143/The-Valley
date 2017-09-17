@@ -17,10 +17,13 @@ public class Option {
 	private int healthMod;
 	private int moneyMod;
 	private int satisfactionMod;
+	//jobMod is 0 for no change, 1 for no job, and 2 for job
+	private int jobMod;
 	private SubEvent subEvent;
+	private boolean endGame;
 	
-	public Option(Requirement prerequisite, String description, int healthMod, int moneyMod, int satisfactionMod,
-			SubEvent subEvent) {
+	public Option(Requirement prerequisite, String description, int healthMod,
+			int moneyMod, int satisfactionMod, int jobMod, SubEvent subEvent) {
 		super();
 		this.prerequisite = prerequisite;
 		this.description = description;
@@ -28,6 +31,7 @@ public class Option {
 		this.moneyMod = moneyMod;
 		this.satisfactionMod = satisfactionMod;
 		this.subEvent = subEvent;
+		endGame = false;
 	}
 	
 	public Requirement getPrerequisite() {
@@ -35,6 +39,12 @@ public class Option {
 	}
 	public void setPrerequisite(Requirement prerequisite) {
 		this.prerequisite = prerequisite;
+	}
+	public int getJobMod() {
+		return jobMod;
+	}
+	public void setJobMod(int jobMod) {
+		this.jobMod = jobMod;
 	}
 	public String getDescription() {
 		return description;
@@ -66,4 +76,11 @@ public class Option {
 	public void setSubEvent(SubEvent subEvent) {
 		this.subEvent = subEvent;
 	}
+	public boolean getEndGame(){
+		return this.endGame;
+	}
+	public void setEndGame(boolean endGame){
+		this.endGame = endGame;
+	}
+	
 }

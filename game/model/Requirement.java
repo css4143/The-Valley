@@ -25,6 +25,8 @@ public class Requirement {
 	private int healthReq;
 	private int moneyReq;
 	private int satisfactionReq;
+	//job req is 0 for doesn't matter, 1 for no job, and 2 for job
+	private int jobReq;
 	//A list of String arrays (all size 2) that represent previous choices
 	//that can be referenced in the player choices dictionary.
 	private List<String[]> choiceReq;
@@ -33,16 +35,25 @@ public class Requirement {
 		this.healthReq = 0;
 		this.moneyReq = 0;
 		this.satisfactionReq = 0;
+		this.jobReq = 0;
 		this.choiceReq = new ArrayList<String[]>();
 	}
 	
-	public Requirement(int healthReq, int moneyReq, int satisfactionReq, List<String[]> choiceReq) {
+	public Requirement(int healthReq, int moneyReq, int satisfactionReq,
+			int jobReq, List<String[]> choiceReq) {
 		this.healthReq = healthReq;
 		this.moneyReq = moneyReq;
 		this.satisfactionReq = satisfactionReq;
+		this.jobReq = jobReq;
 		this.choiceReq = choiceReq;
 	}
 	
+	public int getJobReq() {
+		return jobReq;
+	}
+	public void setJobReq(int jobReq) {
+		this.jobReq = jobReq;
+	}
 	public int gethealthReq() {
 		return healthReq;
 	}
@@ -70,11 +81,13 @@ public class Requirement {
 	
 	//Returns true if requirement is met, false otherwise.
 	public boolean check(Player player){
-		System.out.println(healthReq + "  "+moneyReq+"  "+satisfactionReq);
-		System.out.println(player.getHealth()+"  "+player.getMoney()+"  "+player.getSatisfaction());
 		boolean met = (reqCheck(player.getHealth(), healthReq) && 
 				reqCheck(player.getMoney(), moneyReq) && 
 				reqCheck(player.getSatisfaction(), satisfactionReq));
+		
+		if((jobReq == 1 && player.getJob()) || (jobReq == 2 && !player.getJob())){
+			met = false;
+		}
 		
 		if(choiceReq != null){
 			for(String[] choice: choiceReq){

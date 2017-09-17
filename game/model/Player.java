@@ -1,6 +1,8 @@
 package game.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Player {
@@ -11,14 +13,20 @@ public class Player {
 	private int satisfaction;
 	private int health;
 	private Map<String, String> choices;
+	private List<String> skills;
+	private boolean job;
 	
-	public Player(String name, int age, int money, int satisfaction, int health){
+	public Player(){ }
+	
+	public Player(String name, int age, int money, int satisfaction, int health, boolean job){
 		this.name = name;
 		this.age = age;
 		this.money = money;
 		this.satisfaction = satisfaction;
 		this.health = health;
 		this.choices = new HashMap<String, String>();
+		this.skills = new ArrayList<String>();
+		this.job = job;
 	}
 	
 	public String getChoice(String key) {
@@ -27,7 +35,20 @@ public class Player {
 	public void addChoice(String key, String choice){
 		choices.put(key, choice);
 	}
+	
+	public List<String> getSkills(){
+		return skills;
+	}
+	public void setSkills(List<String> skills){
+		this.skills = skills;
+	}
 
+	public boolean getJob() {
+		return job;
+	}
+	public void setJob(boolean job) {
+		this.job = job;
+	}
 	public String getName() {
 		return name;
 	}
